@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Smile</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="version">4.0</string>
+    <string name="android_track">Android Track: #1</string>
+    <string name="andela">Andela</string>
+    <string name="skip"><![CDATA[Skip >>]]></string>
+    <string name="alc">ALC</string>
+</resources>
