@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_splash_screen.*
  */
 class SplashScreen : AppCompatActivity() {
     private val mHideHandler = Handler()
+
     private val mHidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
 
@@ -40,11 +41,6 @@ class SplashScreen : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mVisible = true
-
-        // Set up the user interaction to manually show or hide the system UI.
-        fullscreen_content.setOnClickListener { toggle() }
-
-
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
