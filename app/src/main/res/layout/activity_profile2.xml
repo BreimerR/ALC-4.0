@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:id="@+id/dialog_content"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".ProfileActivity">
+
+    <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:fitsSystemWindows="true"
+            android:layout_height="400dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/andela_office"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:elevation="4dp"
+            app:elevation="4dp">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:fitsSystemWindows="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:toolbarId="@+id/toolbar"
+                android:background="#A4000000"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:contentScrim="?attr/colorPrimary"
+                android:elevation="4dp"
+                app:elevation="4dp">
+
+            <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <com.github.abdularis.civ.CircleImageView
+                        android:layout_marginTop="100dp"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:src="@drawable/profile"
+                        app:highlightColor="#41000000"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:id="@+id/imageView"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:elevation="4dp" android:layout_marginEnd="8dp"/>
+
+                <ImageView
+                        android:elevation="4dp"
+                        android:id="@+id/andela_logo"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/andela"
+                        app:layout_constraintTop_toTopOf="@+id/imageView"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView" android:layout_marginEnd="110dp"
+                        app:layout_constraintVertical_bias="0.425"/>
+                <TextView
+                        android:elevation="10dp"
+                        android:textSize="48sp"
+                        android:text="@string/e_p_i_c"
+                        android:textColor="@color/colorAccent"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        app:layout_constraintTop_toTopOf="@+id/andela_logo"
+                        app:layout_constraintBottom_toBottomOf="@+id/andela_logo"
+                        app:layout_constraintVertical_bias="0.0" android:layout_marginEnd="14dp"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView"/>
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_width="match_parent"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_profile"/>
+</android.support.design.widget.CoordinatorLayout>

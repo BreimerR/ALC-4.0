@@ -1,17 +1,22 @@
 package com.brymher.gmail.smile
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.view.View
+import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-class SplashScreen : AppCompatActivity() {
+class SplashScreen : BaseActivity(R.layout.activity_splash_screen) {
+
     private val mHideHandler = Handler()
+
+    var tCount = 10
 
     private val mHidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -27,20 +32,56 @@ class SplashScreen : AppCompatActivity() {
                     View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
                     View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     }
+
     private val mShowPart2Runnable = Runnable {
         // Delayed display of UI elements
         supportActionBar?.show()
     }
     private var mVisible: Boolean = false
+
     private val mHideRunnable = Runnable { hide() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_splash_screen)
+    override fun init() {
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mVisible = true
+
+
+        val timer = object : CountDownTimer((tCount * 1000).toLong(), 1000) {
+            override fun onFinish() {
+                tCount = 10
+                startApp()
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+                tCount -= 1
+                val text = "Skipping in $tCount"
+                count_down.text = text
+            }
+
+        }.start()
+
+        skip.setOnClickListener {
+            timer.cancel()
+            startApp()
+        }
+
+        initAnimations()
+    }
+
+    fun initAnimations() {
+
+        alc.animation = AnimationUtils.loadAnimation(this, R.anim.alc_animation)
+
+        version.animation = AnimationUtils.loadAnimation(this, R.anim.version_animation)
+    }
+
+
+    fun startApp() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -68,7 +109,6 @@ class SplashScreen : AppCompatActivity() {
     }
 
     private fun show() {
-        // Show the system bar
         fullscreen_content.systemUiVisibility =
             View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
                     View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
